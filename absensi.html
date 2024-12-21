@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="css/style5.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <section class="header">
+        <nav class="navbar navbar-dark fixed-top" style="background-color: rgb(69, 124, 243);">
+            <div class="container-fluid">
+                <!-- Tombol Toggle untuk Offcanvas -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                
+                <div class="d-flex align-items-center">
+                    <img src="img/Logo1.jpeg" alt="Foto Profil" class="rounded-circle profile-pic">
+                    <div id="logoutMenu" class="logout-menu position-absolute d-none p-2 shadow" style="top: 100%; right: 0; background: white; border: 1px solid #ccc; border-radius: 4px; z-index: 10;">
+                        <a href="logout.html" class="d-block text-danger"><i class="bi bi-box-arrow-right me-2"></i>Logout</a>
+                    </div>
+                </div>
+
+                <!-- Offcanvas Menu -->
+                <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+                    <div class="offcanvas-header" style="background-color: rgb(69, 124, 243);">
+                        <!-- Logo di Offcanvas Header -->
+                        <img src="img/logo.png" alt="Logo" class="offcanvas-logo">
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body bg-white">
+                        <!-- Teks Welcome -->
+                        <div class="d-flex align-items-center mb-3 welcome-section">
+                            <img src="img/Logo1.jpeg" alt="Foto Profil" class="rounded-circle profile-pic-small me-3">
+                            <div>
+                                <h1 class="welcome-text mb-0">Welcome, Wahyuni</h1>
+                                <small class="text-muted">Administrator</small>
+                            </div>
+                        </div>
+                        
+                        <!-- Menu Sidebar -->
+                        <ul class="navbar-nav">
+                            <!-- Dashboard -->
+                            <li class="nav-item">
+                                <a class="nav-link" href="index.html"><i class="bi bi-house-door me-2"></i> Dashboard</a>
+                            </li>
+
+                            <!-- Menu Karyawan -->
+                            <li class="nav-item mt-3">
+                                <span class="text-muted">Menu Karyawan</span>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="karyawan.html"><i class="bi bi-people me-3"></i>Karyawan</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="jabatan.html"><i class="bi bi-briefcase me-3"></i>Jabatan</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="divisi.html"><i class="bi bi-building me-3"></i>Divisi</a>
+                            </li>
+
+                            <!-- Menu Absensi -->
+                            <li class="nav-item mt-3">
+                                <span class="text-muted">Menu Absensi</span>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="absensi.html"><i class="bi bi-calendar-check me-3"></i>Absensi</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="izin.html"><i class="bi bi-check2-circle me-3"></i>Izin</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="lembur.html"><i class="bi bi-clock-history me-3"></i>Lembur</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </section>
+
+    <!-- Header Title dengan Background Biru -->
+    <section class="header-title mt-5 pt-4 main-content">
+        <div class="container-fluid">
+            <h1>Dashboard</h1>
+        </div>
+    </section>
+
+    <!-- Section Data Karyawan -->
+    <section class="data-summary mt-4 main-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-9 mb-9">
+                    <div class="card text-center bg-light pegawai">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between mb-3">
+                                <h5 class="card-title text-start">Data Hadir Karyawan</h5>
+                                <div>
+                                    <input type="text" id="searchInput" class="form-control d-inline-block me-2" style="width: 200px;" placeholder="Search...">
+                                </div>
+                            </div>
+                            <div class="mb-2">
+                                <select id="displayCount" class="form-select" style="width: 76px;">
+                                    <option value="10">10</option>
+                                    <option value="25">25</option>
+                                    <option value="50">50</option>
+                                    <option value="100">100</option>
+                                </select>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead class="table-primary">
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Nama Karyawan</th>
+                                            <th>Tanggal</th>
+                                            <th>Lokasi Absen</th>
+                                            <th>Jam Masuk</th>
+                                            <th>Jam Keluar</th>
+                                            <th>Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>Rina Sari</td>
+                                            <td>2023-11-01</td>
+                                            <td>Kampus Utama</td>
+                                            <td>08:00:00</td>
+                                            <td>16:30:00</td>
+                                            <td><i class="bi bi-eye" style="cursor: pointer;" onclick="showModal('Rina Sari', '2023-11-01', 'Kampus Utama', '08:00:00', '16:30:00')"></i></td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>Fahmi Rinaldi</td>
+                                            <td>2023-11-01</td>
+                                            <td>UNPAM Utara</td>
+                                            <td>09:15:00</td>
+                                            <td>17:45:00</td>
+                                            <td><i class="bi bi-eye" style="cursor: pointer;" onclick="showModal('Fahmi Rinaldi', '2023-11-01', 'UNPAM Utara', '09:15:00', '17:45:00')"></i></td>
+                                        </tr>
+                                        <tr>
+                                            <td>3</td>
+                                            <td>Aditya Pratama</td>
+                                            <td>2023-11-02</td>
+                                            <td>Gedung C</td>
+                                            <td>07:30:00</td>
+                                            <td>15:30:00</td>
+                                            <td><i class="bi bi-eye" style="cursor: pointer;" onclick="showModal('Aditya Pratama', '2023-11-02', 'Gedung C', '07:30:00', '15:30:00')"></i></td>
+                                        </tr>
+                                        <tr>
+                                            <td>4</td>
+                                            <td>Siti Khadijah</td>
+                                            <td>2023-11-02</td>
+                                            <td>Kampus Kimia</td>
+                                            <td>10:00:00</td>
+                                            <td>18:00:00</td>
+                                            <td><i class="bi bi-eye" style="cursor: pointer;" onclick="showModal('Siti Khadijah', '2023-11-02', 'Kampus Kimia', '10:00:00', '18:00:00')"></i></td>
+                                        </tr>
+                                        <tr>
+                                            <td>5</td>
+                                            <td>Andi Nugroho</td>
+                                            <td>2023-11-03</td>
+                                            <td>Gedung A</td>
+                                            <td>08:15:00</td>
+                                            <td>17:00:00</td>
+                                            <td><i class="bi bi-eye" style="cursor: pointer;" onclick="showModal('Andi Nugroho', '2023-11-03', 'Gedung A', '08:15:00', '17:00:00')"></i></td>
+                                        </tr>
+                                        <tr>
+                                            <td>6</td>
+                                            <td>Rina Anggraini</td>
+                                            <td>2023-11-03</td>
+                                            <td>UNPAM Selatan</td>
+                                            <td>09:45:00</td>
+                                            <td>18:15:00</td>
+                                            <td><i class="bi bi-eye" style="cursor: pointer;" onclick="showModal('Rina Anggraini', '2023-11-03', 'UNPAM Selatan', '09:45:00', '18:15:00')"></i></td>
+                                        </tr>
+                                        <tr>
+                                            <td>7</td>
+                                            <td>Rafael Budi</td>
+                                            <td>2023-11-04</td>
+                                            <td>Kampus Utara</td>
+                                            <td>10:30:00</td>
+                                            <td>19:00:00</td>
+                                            <td><i class="bi bi-eye" style="cursor: pointer;" onclick="showModal('Rafael Budi', '2023-11-04', 'Kampus Utara', '10:30:00', '19:00:00')"></i></td>
+                                        </tr>
+                                        <tr>
+                                            <td>8</td>
+                                            <td>Tiara Wati</td>
+                                            <td>2023-11-04</td>
+                                            <td>Gedung D</td>
+                                            <td>08:45:00</td>
+                                            <td>16:45:00</td>
+                                            <td><i class="bi bi-eye" style="cursor: pointer;" onclick="showModal('Tiara Wati', '2023-11-04', 'Gedung D', '08:45:00', '16:45:00')"></i></td>
+                                        </tr>
+                                        <tr>
+                                            <td>9</td>
+                                            <td>Yusuf Rahman</td>
+                                            <td>2023-11-05</td>
+                                            <td>Kampus Kimia</td>
+                                            <td>09:00:00</td>
+                                            <td>17:30:00</td>
+                                            <td><i class="bi bi-eye" style="cursor: pointer;" onclick="showModal('Yusuf Rahman', '2023-11-05', 'Kampus Kimia', '09:00:00', '17:30:00')"></i></td>
+                                        </tr>
+                                        <tr>
+                                            <td>10</td>
+                                            <td>Novita Ningsih</td>
+                                            <td>2023-11-05</td>
+                                            <td>UNPAM Timur</td>
+                                            <td>07:00:00</td>
+                                            <td>15:00:00</td>
+                                            <td><i class="bi bi-eye" style="cursor: pointer;" onclick="showModal('Novita Ningsih', '2023-11-05', 'UNPAM Timur', '07:00:00', '15:00:00')"></i></td>
+                                        </tr>
+                                        <tr>
+                                            <td>11</td>
+                                            <td>Dimas Supriyadi</td>
+                                            <td>2023-11-06</td>
+                                            <td>Gedung B</td>
+                                            <td>09:30:00</td>
+                                            <td>18:00:00</td>
+                                            <td><i class="bi bi-eye" style="cursor: pointer;" onclick="showModal('Dimas Supriyadi', '2023-11-06', 'Gedung B', '09:30:00', '18:00:00')"></i></td>
+                                        </tr>
+                                        <tr>
+                                            <td>12</td>
+                                            <td>Rizki Maulana</td>
+                                            <td>2023-11-06</td>
+                                            <td>Kampus Selatan</td>
+                                            <td>10:15:00</td>
+                                            <td>18:45:00</td>
+                                            <td><i class="bi bi-eye" style="cursor: pointer;" onclick="showModal('Rizki Maulana', '2023-11-06', 'Kampus Selatan', '10:15:00', '18:45:00')"></i></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="detailModalLabel">Detail Absensi Karyawan</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p><strong>Nama Karyawan:</strong> <span id="modalNama"></span></p>
+                    <p><strong>Tanggal:</strong> <span id="modalTanggal"></span></p>
+                    <p><strong>Lokasi Absen:</strong> <span id="modalLokasi"></span></p>
+                    <p><strong>Jam Masuk:</strong> <span id="modalJamMasuk"></span></p>
+                    <p><strong>Jam Keluar:</strong> <span id="modalJamKeluar"></span></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        function updateDisplayCount() {
+            var displayCount = parseInt(document.getElementById('displayCount').value); // Ambil nilai dari dropdown
+            var tableRows = document.querySelectorAll('.table tbody tr'); // Semua baris di tabel
+        
+            // Sembunyikan semua baris terlebih dahulu
+            tableRows.forEach(function (row, index) {
+                row.style.display = (index < displayCount) ? '' : 'none'; // Tampilkan sesuai dengan jumlah yang dipilih
+            });
+        }
+
+        // Event listener untuk mendeteksi perubahan pada dropdown
+        document.getElementById('displayCount').addEventListener('change', updateDisplayCount);
+
+        // Panggil fungsi ini saat halaman pertama kali dimuat untuk menampilkan jumlah default (10 baris)
+        updateDisplayCount();
+
+        document.getElementById('searchInput').addEventListener('input', function () {
+            var searchTerm = this.value.toLowerCase();
+            var tableRows = document.querySelectorAll('.table tbody tr');
+
+            tableRows.forEach(function (row) {
+                var rowText = row.innerText.toLowerCase();
+                if (rowText.includes(searchTerm)) {
+                    row.style.display = ''; // Tampilkan baris
+                } else {
+                row.style.display = 'none'; // Sembunyikan baris
+                }
+            });
+        });
+
+        function showModal(nama, tanggal, lokasi, jamMasuk, jamKeluar) {
+            document.getElementById('modalNama').innerText = nama;
+            document.getElementById('modalTanggal').innerText = tanggal;
+            document.getElementById('modalLokasi').innerText = lokasi;
+            document.getElementById('modalJamMasuk').innerText = jamMasuk;
+            document.getElementById('modalJamKeluar').innerText = jamKeluar;
+            var detailModal = new bootstrap.Modal(document.getElementById('detailModal'), {});
+            detailModal.show();
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const profilePic = document.querySelector('.profile-pic');
+            const logoutMenu = document.getElementById('logoutMenu');
+
+            profilePic.addEventListener('click', function () {
+                logoutMenu.classList.toggle('d-none'); // Menampilkan atau menyembunyikan menu logout
+            });
+
+            // Menyembunyikan menu saat klik di luar
+            document.addEventListener('click', function(event) {
+                if (!profilePic.contains(event.target) && !logoutMenu.contains(event.target)) {
+                    logoutMenu.classList.add('d-none'); // Sembunyikan menu logout jika klik di luar
+                }
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var totalAbsensiHariIni = document.querySelectorAll('.table tbody tr').length;
+            localStorage.setItem('totalAbsensiHariIni', totalAbsensiHariIni);
+        });
+
+        localStorage.setItem('totalAbsensiHariIni', totalAbsensi);
+        
+    </script>
+</body>
+</html>

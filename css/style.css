@@ -1,0 +1,149 @@
+.header a {
+    color: #262a30;
+}
+
+.header-title {
+    background-color: #1e57b3;
+    color: white;
+    padding: 100px;
+    text-align: center;
+}
+
+.header-title h1 {
+    margin: 0;
+    font-size: 1.8rem;
+    margin-top: 50px;
+    margin-right: 380px;
+}
+
+.header-title p {
+    margin: 0;
+    font-size: 1.2rem;
+    margin-right: 745px;
+    margin-top: 20px;
+    margin-bottom: -30px;
+}
+
+.profile-pic {
+    height: 40px;
+    width: 40px;
+    object-fit: cover;
+}
+
+.offcanvas-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.offcanvas-logo {
+    width: 180px;
+    height: auto;
+    margin-right: auto;
+
+}
+
+.data-summary .card {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+}
+
+.data-summary .card:hover {
+    transform: translateY(-5px);
+}
+
+.data-summary .card h5 {
+    margin-bottom: 10px;
+}
+
+.data-summary .card h2 {
+    font-size: 2rem;
+    color: #1e57b3;
+}
+
+.data-summary .card p {
+    font-size: 0.7rem;
+    color: #01050a;
+    font-weight: bold;
+}
+
+.data-summary .card.pegawai {
+    margin-top: -70px;
+}
+
+.welcome-section {
+    margin-bottom: 20px;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.profile-pic-small {
+    height: 50px;
+    width: 50px;
+    object-fit: cover;
+}
+
+.welcome-text {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #262a30;
+}
+
+.offcanvas a.nav-link {
+    color: #262a30;
+}
+
+.welcome-message {
+    color: #262a30;
+    margin-top: 20px;
+    font-size: 1.5rem;
+}
+
+.main-content {
+    transition: transform 0.3s ease;
+}
+
+.main-content.shifted {
+    transform: translateX(250px);
+}
+
+.data-summary .container-fluid {
+    margin-left: 220px;
+}
+
+.navbar-nav .nav-item .text-muted{
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.navbar-nav .nav-item a{
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.offcanvas .nav-link {
+    color: #262a30;
+}
+
+.offcanvas .nav-link:hover {
+    background-color: #1e57b3;
+    color: white;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.logout-menu a {
+    color: #000;
+    text-decoration: none;
+    padding: 5px 10px;
+}
+
+.logout-menu a:hover {
+    background-color: #f0f0f0;
+    border-radius: 4px;
+}
+
+.profile-pic {
+    cursor: pointer;
+}

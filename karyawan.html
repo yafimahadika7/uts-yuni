@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="css/style2.css"> <!-- Menghubungkan ke file CSS terpisah -->
+</head>
+<body>
+    <!-- Navbar -->
+    <section class="header">
+        <nav class="navbar navbar-dark fixed-top" style="background-color: rgb(69, 124, 243);">
+            <div class="container-fluid">
+                <!-- Tombol Toggle untuk Offcanvas -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                
+                <!-- Foto Profil di Sebelah Kanan -->
+                <div class="d-flex align-items-center">
+                    <img src="img/Logo1.jpeg" alt="Foto Profil" class="rounded-circle profile-pic">
+                    <div id="logoutMenu" class="logout-menu position-absolute d-none p-2 shadow" style="top: 100%; right: 0; background: white; border: 1px solid #ccc; border-radius: 4px; z-index: 10;">
+                        <a href="logout.html" class="d-block text-danger"><i class="bi bi-box-arrow-right me-2"></i>Logout</a>
+                    </div>
+                </div>
+
+                <!-- Offcanvas Menu -->
+                <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+                    <div class="offcanvas-header" style="background-color: rgb(69, 124, 243);">
+                        <!-- Logo di Offcanvas Header -->
+                        <img src="img/logo.png" alt="Logo" class="offcanvas-logo">
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body bg-white">
+                        <!-- Teks Welcome -->
+                        <div class="d-flex align-items-center mb-3 welcome-section">
+                            <img src="img/Logo1.jpeg" alt="Foto Profil" class="rounded-circle profile-pic-small me-3">
+                            <div>
+                                <h1 class="welcome-text mb-0">Welcome, Wahyuni</h1>
+                                <small class="text-muted">Administrator</small>
+                            </div>
+                        </div>
+                        
+                        <!-- Menu Sidebar -->
+                        <ul class="navbar-nav">
+                            <!-- Dashboard -->
+                            <li class="nav-item">
+                                <a class="nav-link" href="index.html"><i class="bi bi-house-door me-2"></i> Dashboard</a>
+                            </li>
+
+                            <!-- Menu Karyawan -->
+                            <li class="nav-item mt-3">
+                                <span class="text-muted">Menu Karyawan</span>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="karyawan.html"><i class="bi bi-people me-3"></i>Karyawan</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="jabatan.html"><i class="bi bi-briefcase me-3"></i>Jabatan</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="divisi.html"><i class="bi bi-building me-3"></i>Divisi</a>
+                            </li>
+
+                            <!-- Menu Absensi -->
+                            <li class="nav-item mt-3">
+                                <span class="text-muted">Menu Absensi</span>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="absensi.html"><i class="bi bi-calendar-check me-3"></i>Absensi</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="izin.html"><i class="bi bi-check2-circle me-3"></i>Izin</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="lembur.html"><i class="bi bi-clock-history me-3"></i>Lembur</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </section>
+
+    <!-- Header Title dengan Background Biru -->
+    <section class="header-title mt-5 pt-4 main-content">
+        <div class="container-fluid">
+            <h1>Dashboard</h1>
+        </div>
+    </section>
+
+    <!-- Section Data Karyawan -->
+    <section class="data-summary mt-4 main-content">
+        <div class="container-fluid">
+            <div class="row">
+                <!-- Data Pegawai -->
+                <div class="col-md-9 mb-9">
+                    <div class="card text-center bg-light pegawai">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between mb-3">
+                                <h5 class="card-title text-start">Data Karyawan</h5>
+                                <div>
+                                    <input type="text" id="searchInput" class="form-control d-inline-block me-2" style="width: 200px;" placeholder="Search..." oninput="filterEmployeeData()">
+                                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addEmployeeModal"><i class="bi bi-plus-lg"></i> Tambah</button>
+                                </div>
+                            </div>
+                            <div class="mb-2">
+                                <select id="displayCount" class="form-select" style="width: 76px;" onchange="loadEmployeeData()">
+                                    <option value="10">10</option>
+                                    <option value="25">25</option>
+                                    <option value="50">50</option>
+                                    <option value="100">100</option>
+                                </select>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead class="table-primary">
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Kode</th>
+                                            <th>Nama</th>
+                                            <th>Email</th>
+                                            <th>Alamat</th>
+                                            <th>Jabatan</th>
+                                            <th>Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal for Adding Employee -->
+    <div class="modal fade" id="addEmployeeModal" tabindex="-1" aria-labelledby="addEmployeeModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addEmployeeModalLabel">Tambah Karyawan</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="addEmployeeForm">
+                        <div class="mb-3">
+                            <label for="kode" class="form-label">Kode</label>
+                            <input type="text" class="form-control" id="kode" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="nama" class="form-label">Nama</label>
+                            <input type="text" class="form-control" id="nama" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="alamat" class="form-label">Alamat</label>
+                            <textarea class="form-control" id="alamat" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="jabatanKaryawan" class="form-label">Jabatan</label>
+                            <select id="jabatan" class="form-select" name="jabatan">
+                                <option value="">Pilih Jabatan</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                    <button type="button" class="btn btn-primary" onclick="addEmployee()">Simpan</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        document.querySelector('.navbar-toggler').addEventListener('click', function () {
+            const mainContent = document.querySelector('.main-content');
+            const offcanvas = document.getElementById('offcanvasDarkNavbar');
+
+            // Menambahkan event listener saat sidebar terbuka
+            offcanvas.addEventListener('shown.bs.offcanvas', function () {
+                mainContent.classList.add('shifted'); // Memperbaiki kesalahan penamaan 'ainContent' menjadi 'mainContent'
+            });
+
+            // Menambahkan event listener saat sidebar tertutup
+            offcanvas.addEventListener('hidden.bs.offcanvas', function () {
+                mainContent.classList.remove('shifted');
+            });
+        });
+
+        function loadEmployeeData() {
+            const employeeData = JSON.parse(localStorage.getItem('employees')) || [];
+            const jabatanData = JSON.parse(localStorage.getItem('jabatanData')) || [];
+            const displayCount = parseInt(document.getElementById('displayCount').value);
+            const tbody = document.querySelector('.table tbody');
+            tbody.innerHTML = '';
+
+            const filteredData = employeeData.slice(0, displayCount);
+            filteredData.forEach((employee, index) => {
+                // Cari nama jabatan berdasarkan kode jabatan di data karyawan
+                const jabatan = jabatanData.find(j => j.kode === employee.jabatan)?.jabatan || 'Tidak Diketahui';
+        
+                const newRow = document.createElement('tr');
+                newRow.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td>${employee.kode}</td>
+                    <td>${employee.nama}</td>
+                    <td>${employee.email}</td>
+                    <td>${employee.alamat}</td>
+                    <td>${jabatan}</td>
+                    <td>
+                        <button class="btn btn-warning btn-sm" onclick="editEmployee('${employee.kode}')">
+                            <i class="bi bi-pencil"></i>
+                        </button>
+                        <button class="btn btn-danger btn-sm" onclick="removeEmployee(this)">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </td>
+            `       ;
+                tbody.appendChild(newRow);
+            });
+        }
+
+
+        function filterEmployeeData() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const employeeData = JSON.parse(localStorage.getItem('employees')) || [];
+            const filteredData = employeeData.filter(employee => employee.nama.toLowerCase().includes(searchTerm));
+
+            const tbody = document.querySelector('.table tbody');
+            tbody.innerHTML = ''; // Clear existing table rows
+            filteredData.forEach((employee, index) => {
+                const newRow = document.createElement('tr');
+                newRow.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td>${employee.kode}</td>
+                    <td>${employee.nama}</td>
+                    <td>${employee.email}</td>
+                    <td>${employee.alamat}</td>
+                    <td>${employee.jabatan}</td>
+                    <td>
+                        <button class="btn btn-warning btn-sm" onclick="editEmployee('${employee.kode}')">
+                            <i class="bi bi-pencil"></i>
+                        </button>
+                        <button class="btn btn-danger btn-sm" onclick="removeEmployee(this)">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </td>
+            `   ;
+                tbody.appendChild(newRow);
+            });
+        }
+
+        function addEmployee() {
+            const kode = document.getElementById('kode').value;
+            const nama = document.getElementById('nama').value;
+            const email = document.getElementById('email').value;
+            const alamat = document.getElementById('alamat').value;
+            const jabatan = document.getElementById('jabatan').value; // Pastikan id-nya benar
+
+            const employeeData = JSON.parse(localStorage.getItem('employees')) || [];
+
+            employeeData.push({ kode, nama, email, alamat, jabatan });
+            localStorage.setItem('employees', JSON.stringify(employeeData));
+            loadEmployeeData();
+
+            document.getElementById('addEmployeeForm').reset();
+
+            // Tutup modal
+            const modal = bootstrap.Modal.getInstance(document.getElementById('addEmployeeModal'));
+            modal.hide();
+        }
+
+        function removeEmployee(button) {
+            const row = button.closest('tr');
+            const kode = row.cells[1].innerText;
+            const employeeData = JSON.parse(localStorage.getItem('employees')) || [];
+            const updatedEmployeeData = employeeData.filter(employee => employee.kode !== kode);
+            localStorage.setItem('employees', JSON.stringify(updatedEmployeeData));
+            loadEmployeeData();
+        }
+
+        function editEmployee(kode) {
+            const employeeData = JSON.parse(localStorage.getItem('employees')) || [];
+            const employee = employeeData.find(emp => emp.kode === kode);
+    
+            document.getElementById('kode').value = employee.kode;
+            document.getElementById('nama').value = employee.nama;
+            document.getElementById('email').value = employee.email;
+            document.getElementById('alamat').value = employee.alamat;
+            document.getElementById('jabatan').value = employee.jabatan;
+
+            const saveButton = document.querySelector('.modal-footer .btn-primary');
+            saveButton.innerHTML = 'Update';
+            saveButton.setAttribute('onclick', `updateEmployee('${kode}')`);
+
+            const modal = new bootstrap.Modal(document.getElementById('addEmployeeModal'));
+            modal.show();
+        }
+
+        function updateEmployee(kode) {
+            const employeeData = JSON.parse(localStorage.getItem('employees')) || [];
+            const index = employeeData.findIndex(emp => emp.kode === kode);
+
+            const updatedEmployee = {
+                kode: document.getElementById('kode').value,
+                nama: document.getElementById('nama').value,
+                email: document.getElementById('email').value,
+                alamat: document.getElementById('alamat').value,
+                jabatan: document.getElementById('jabatan').value,
+            };
+
+            // Update data karyawan
+            employeeData[index] = updatedEmployee;
+            localStorage.setItem('employees', JSON.stringify(employeeData));
+            loadEmployeeData();
+
+            // Reset form
+            document.getElementById('addEmployeeForm').reset();
+    
+            // Tutup modal
+            const modal = bootstrap.Modal.getInstance(document.getElementById('addEmployeeModal'));
+            modal.hide();
+        }
+
+
+        function loadJabatanOptions() {
+            const jabatanData = JSON.parse(localStorage.getItem('jabatanData')) || [];
+            const jabatanSelect = document.getElementById('jabatan');
+
+            jabatanSelect.innerHTML = '<option value="">Pilih Jabatan</option>';
+
+            jabatanData.forEach(jabatan => {
+                const option = document.createElement('option');
+                option.value = jabatan.kode;
+                option.textContent = jabatan.jabatan;
+                jabatanSelect.appendChild(option);
+            });
+        }
+
+        // Panggil fungsi ini ketika halaman dimuat
+        window.onload = function() {
+            loadJabatanOptions();
+            loadEmployeeData();
+        };
+
+
+        document.getElementById('addEmployeeModal').addEventListener('show.bs.modal', loadJabatanOptions);
+        window.onload = loadEmployeeData;
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const profilePic = document.querySelector('.profile-pic');
+            const logoutMenu = document.getElementById('logoutMenu');
+
+            profilePic.addEventListener('click', function () {
+                logoutMenu.classList.toggle('d-none'); // Menampilkan atau menyembunyikan menu logout
+            });
+
+            // Menyembunyikan menu saat klik di luar
+            document.addEventListener('click', function(event) {
+                if (!profilePic.contains(event.target) && !logoutMenu.contains(event.target)) {
+                    logoutMenu.classList.add('d-none'); // Sembunyikan menu logout jika klik di luar
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="css/style.css"> <!-- Menghubungkan ke file CSS terpisah -->
+</head>
+<body>
+    <!-- Navbar -->
+    <section class="header">
+        <nav class="navbar navbar-dark fixed-top" style="background-color: rgb(69, 124, 243);">
+            <div class="container-fluid">
+                <!-- Tombol Toggle untuk Offcanvas -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                
+                <!-- Foto Profil di Sebelah Kanan -->
+                <div class="d-flex align-items-center">
+                    <img src="img/Logo1.jpeg" alt="Foto Profil" class="rounded-circle profile-pic">
+                    <div id="logoutMenu" class="logout-menu position-absolute d-none p-2 shadow" style="top: 100%; right: 0; background: white; border: 1px solid #ccc; border-radius: 4px; z-index: 10;">
+                        <a href="logout.html" class="d-block text-danger"><i class="bi bi-box-arrow-right me-2"></i>Logout</a>
+                    </div>
+                </div>
+
+                <!-- Offcanvas Menu -->
+                <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+                    <div class="offcanvas-header" style="background-color: rgb(69, 124, 243);">
+                        <!-- Logo di Offcanvas Header -->
+                        <img src="img/logo.png" alt="Logo" class="offcanvas-logo">
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body bg-white">
+                        <!-- Teks Welcome -->
+                        <div class="d-flex align-items-center mb-3 welcome-section">
+                            <img src="img/Logo1.jpeg" alt="Foto Profil" class="rounded-circle profile-pic-small me-3">
+                            <div>
+                                <h1 class="welcome-text mb-0">Welcome, Wahyuni</h1>
+                                <small class="text-muted">Administrator</small>
+                            </div>
+                        </div>
+                        
+                        <!-- Menu Sidebar -->
+                        <ul class="navbar-nav">
+                            <!-- Dashboard -->
+                            <li class="nav-item">
+                                <a class="nav-link" href="index.html"><i class="bi bi-house-door me-2"></i> Dashboard</a>
+                            </li>
+
+                            <!-- Menu Karyawan -->
+                            <li class="nav-item mt-3">
+                                <span class="text-muted">Menu Karyawan</span>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="karyawan.html"><i class="bi bi-people me-3"></i>Karyawan</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="jabatan.html"><i class="bi bi-briefcase me-3"></i>Jabatan</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="divisi.html"><i class="bi bi-building me-3"></i>Divisi</a>
+                            </li>
+
+                            <!-- Menu Absensi -->
+                            <li class="nav-item mt-3">
+                                <span class="text-muted">Menu Absensi</span>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="absensi.html"><i class="bi bi-calendar-check me-3"></i>Absensi</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="izin.html"><i class="bi bi-check2-circle me-3"></i>Izin</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="lembur.html"><i class="bi bi-clock-history me-3"></i>Lembur</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </section>
+
+    <!-- Header Title dengan Background Biru -->
+    <section class="header-title mt-5 pt-4 main-content">
+        <div class="container-fluid">
+            <h1>Sistem Informasi Manajemen Karyawan</h1>
+            <p>Admin Dashboard</p>
+        </div>
+    </section>
+
+    <!-- Section Data Karyawan -->
+    <section class="data-summary mt-4 main-content">
+        <div class="container-fluid">
+            <div class="row">
+                <!-- Data Pegawai -->
+                <div class="col-md-2 mb-2">
+                    <div class="card text-center bg-light pegawai">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="bi bi-people-fill" style="font-size: 2rem;"></i></h5>
+                            <p class="card-text">Data Pegawai</p>
+                            <h2><span id="employeeCount"></span></h2>
+                        </div>
+                    </div>
+                </div>
+                <!-- Absensi Hari Ini -->
+                <div class="col-md-2 mb-2">
+                    <div class="card text-center bg-light pegawai">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="bi bi-calendar-check-fill" style="font-size: 2rem; color: green;"></i></h5>
+                            <p class="card-text">Absensi Hari Ini</p>
+                            <h2 id="totalAbsensiHariIni">0</h2>
+                        </div>
+                    </div>
+                </div>
+                <!-- Izin Menunggu Konfirmasi -->
+                <div class="col-md-2 mb-2">
+                    <div class="card text-center bg-light pegawai">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="bi bi-check2-circle" style="font-size: 2rem; color: blue;"></i></h5>
+                            <p class="card-text">Izin Menunggu Konfirmasi</p>
+                            <h2 id="totalPendingStatus">0</h2>
+                        </div>
+                    </div>
+                </div>
+                <!-- Lembur Menunggu Konfirmasi -->
+                <div class="col-md-2 mb-2">
+                    <div class="card text-center bg-light pegawai">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="bi bi-check2-circle" style="font-size: 2rem; color: purple;"></i></h5>
+                            <p class="card-text">Lembur Menunggu Konfirmasi</p>
+                            <h2 id="totalPendingLembur">0</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const offcanvas = document.getElementById('offcanvasDarkNavbar');
+        const mainContent = document.querySelectorAll('.main-content');
+
+        offcanvas.addEventListener('shown.bs.offcanvas', () => {
+            mainContent.forEach(section => section.classList.add('shifted'));
+        });
+
+        offcanvas.addEventListener('hidden.bs.offcanvas', () => {
+            mainContent.forEach(section => section.classList.remove('shifted'));
+        });
+
+        function updateEmployeeCount() {
+            const employeeData = JSON.parse(localStorage.getItem('employees')) || [];
+            const employeeCount = employeeData.length;
+            document.getElementById('employeeCount').innerText = employeeCount;
+        }
+
+        function updateDailyAttendanceCount() {
+            const absensiData = JSON.parse(localStorage.getItem('absensiHarian')) || [];
+            const attendanceCount = absensiData.length;
+            document.getElementById('dailyAttendanceCount').innerText = attendanceCount;
+        }
+
+        function updatePendingIzinCount() {
+            const izinData = JSON.parse(localStorage.getItem('izin')) || [];
+            const pendingCount = izinData.filter(izin => izin.status === 'Menunggu Konfirmasi').length;
+            document.getElementById('totalPendingStatus').innerText = pendingCount;
+        }
+
+        function updatePendingLemburCount() {
+            const lemburData = JSON.parse(localStorage.getItem('lembur')) || [];
+            const pendingCount = lemburData.filter(lembur => lembur.status === 'Menunggu Konfirmasi').length;
+            document.getElementById('totalPendingLembur').innerText = pendingCount;
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var totalAbsensi = localStorage.getItem('totalAbsensiHariIni') || 0;
+            document.getElementById('totalAbsensiHariIni').innerText = totalAbsensi;
+
+            updatePendingIzinCount();
+            updatePendingLemburCount();
+        });
+
+    window.onload = function() {
+        updateEmployeeCount();
+        updateDailyAttendanceCount();
+    };
+
+    document.addEventListener('DOMContentLoaded', function () {
+            const profilePic = document.querySelector('.profile-pic');
+            const logoutMenu = document.getElementById('logoutMenu');
+
+            profilePic.addEventListener('click', function () {
+                logoutMenu.classList.toggle('d-none'); // Menampilkan atau menyembunyikan menu logout
+            });
+
+            // Menyembunyikan menu saat klik di luar
+            document.addEventListener('click', function(event) {
+                if (!profilePic.contains(event.target) && !logoutMenu.contains(event.target)) {
+                    logoutMenu.classList.add('d-none'); // Sembunyikan menu logout jika klik di luar
+                }
+            });
+    });
+    
+    </script>
+</body>
+</html>

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="css/style7.css"> <!-- Menghubungkan ke file CSS terpisah -->
+</head>
+<body>
+    <!-- Navbar -->
+    <section class="header">
+        <nav class="navbar navbar-dark fixed-top" style="background-color: rgb(69, 124, 243);">
+            <div class="container-fluid">
+                <!-- Tombol Toggle untuk Offcanvas -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                
+                <div class="d-flex align-items-center">
+                    <img src="img/Logo1.jpeg" alt="Foto Profil" class="rounded-circle profile-pic">
+                    <div id="logoutMenu" class="logout-menu position-absolute d-none p-2 shadow" style="top: 100%; right: 0; background: white; border: 1px solid #ccc; border-radius: 4px; z-index: 10;">
+                        <a href="logout.html" class="d-block text-danger"><i class="bi bi-box-arrow-right me-2"></i>Logout</a>
+                    </div>
+                </div>
+
+                <!-- Offcanvas Menu -->
+                <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+                    <div class="offcanvas-header" style="background-color: rgb(69, 124, 243);">
+                        <!-- Logo di Offcanvas Header -->
+                        <img src="img/logo.png" alt="Logo" class="offcanvas-logo">
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body bg-white">
+                        <!-- Teks Welcome -->
+                        <div class="d-flex align-items-center mb-3 welcome-section">
+                            <img src="img/Logo1.jpeg" alt="Foto Profil" class="rounded-circle profile-pic-small me-3">
+                            <div>
+                                <h1 class="welcome-text mb-0">Welcome, Wahyuni</h1>
+                                <small class="text-muted">Administrator</small>
+                            </div>
+                        </div>
+                        
+                        <!-- Menu Sidebar -->
+                        <ul class="navbar-nav">
+                            <!-- Dashboard -->
+                            <li class="nav-item">
+                                <a class="nav-link" href="index.html"><i class="bi bi-house-door me-2"></i> Dashboard</a>
+                            </li>
+
+                            <!-- Menu Karyawan -->
+                            <li class="nav-item mt-3">
+                                <span class="text-muted">Menu Karyawan</span>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="karyawan.html"><i class="bi bi-people me-3"></i>Karyawan</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="jabatan.html"><i class="bi bi-briefcase me-3"></i>Jabatan</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="divisi.html"><i class="bi bi-building me-3"></i>Divisi</a>
+                            </li>
+
+                            <!-- Menu Absensi -->
+                            <li class="nav-item mt-3">
+                                <span class="text-muted">Menu Absensi</span>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="absensi.html"><i class="bi bi-calendar-check me-3"></i>Absensi</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="izin.html"><i class="bi bi-check2-circle me-3"></i>Izin</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="lembur.html"><i class="bi bi-clock-history me-3"></i>Lembur</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </section>
+
+    <!-- Header Title dengan Background Biru -->
+    <section class="header-title mt-5 pt-4 main-content">
+        <div class="container-fluid">
+            <h1>Dashboard</h1>
+        </div>
+    </section>
+
+    <!-- Section Data Karyawan -->
+    <section class="data-summary mt-4 main-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-9 mb-9">
+                    <div class="card text-center bg-light pegawai">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between mb-3">
+                                <h5 class="card-title text-start">Daftar Lembur Karyawan</h5>
+                                <div>
+                                    <button id="ubahStatusBtn" class="btn btn-primary">Ubah Status</button>
+                                </div>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead class="table-primary">
+                                        <tr>
+                                            <th>Pilih</th>
+                                            <th>No</th>
+                                            <th>Nama</th>
+                                            <th>Tanggal</th>
+                                            <th>Jam Lembur Mulai | Berakhir</th>
+                                            <th>Keperluan Lembur</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr data-id="16">
+                                            <td><input type="checkbox" class="select-row"></td>
+                                            <td>1</td>
+                                            <td>Rina Lestari</td>
+                                            <td>2023-11-02</td>
+                                            <td>08:00:00 | 19:00:00</td>
+                                            <td>Penyusunan Laporan</td>
+                                            <td class="status-cell">Menunggu Konfirmasi</td>
+                                        </tr>
+                            
+                                        <tr data-id="17">
+                                            <td><input type="checkbox" class="select-row"></td>
+                                            <td>2</td>
+                                            <td>Hendra Setiawan</td>
+                                            <td>2023-11-03</td>
+                                            <td>09:00:00 | 21:00:00</td>
+                                            <td>Persiapan Proyek</td>
+                                            <td class="status-cell">Menunggu Konfirmasi</td>
+                                        </tr>
+                            
+                                        <tr data-id="18">
+                                            <td><input type="checkbox" class="select-row"></td>
+                                            <td>3</td>
+                                            <td>Diana Anggraini</td>
+                                            <td>2023-11-04</td>
+                                            <td>07:30:00 | 20:30:00</td>
+                                            <td>Meeting Klien</td>
+                                            <td class="status-cell">Menunggu Konfirmasi</td>
+                                        </tr>
+                            
+                                        <tr data-id="19">
+                                            <td><input type="checkbox" class="select-row"></td>
+                                            <td>4</td>
+                                            <td>Budi Santoso</td>
+                                            <td>2023-11-05</td>
+                                            <td>10:00:00 | 22:00:00</td>
+                                            <td>Revisi Proyek</td>
+                                            <td class="status-cell">Menunggu Konfirmasi</td>
+                                        </tr>
+                            
+                                        <tr data-id="20">
+                                            <td><input type="checkbox" class="select-row"></td>
+                                            <td>5</td>
+                                            <td>Sari Utami</td>
+                                            <td>2023-11-06</td>
+                                            <td>11:00:00 | 23:00:00</td>
+                                            <td>Pengembangan Sistem</td>
+                                            <td class="status-cell">Menunggu Konfirmasi</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var ubahStatusBtn = document.getElementById('ubahStatusBtn');
+            var lemburData = JSON.parse(localStorage.getItem('lembur')) || [
+                { "id": 16, "status": "Menunggu Konfirmasi" },
+                { "id": 17, "status": "Menunggu Konfirmasi" },
+                { "id": 18, "status": "Menunggu Konfirmasi" },
+                { "id": 19, "status": "Menunggu Konfirmasi" },
+                { "id": 20, "status": "Menunggu Konfirmasi" }
+            ];
+    
+            document.querySelectorAll('tbody tr').forEach(function (row) {
+                var rowId = parseInt(row.getAttribute('data-id'));
+                var lembur = lemburData.find(item => item.id === rowId);
+                if (lembur) {
+                    row.querySelector('.status-cell').textContent = lembur.status;
+                }
+            });
+    
+            ubahStatusBtn.addEventListener('click', function () {
+                var rowsUpdated = false;
+    
+                document.querySelectorAll('.select-row').forEach(function (checkbox) {
+                    if (checkbox.checked) {
+                        var row = checkbox.closest('tr');
+                        var statusCell = row.querySelector('.status-cell');
+                        var rowId = parseInt(row.getAttribute('data-id'));
+                    
+                        if (statusCell.textContent.trim() === 'Menunggu Konfirmasi') {
+                            statusCell.textContent = 'Disetujui';
+                        
+                            var lembur = lemburData.find(item => item.id === rowId);
+                            if (lembur) {
+                                lembur.status = 'Disetujui';
+                                rowsUpdated = true;
+                            }
+                        }
+                    }
+                });
+    
+                if (rowsUpdated) {
+                    localStorage.setItem('lembur', JSON.stringify(lemburData));
+                    alert('Status berhasil diubah.');
+                    updatePendingLemburCount();
+                } else {
+                    alert('Tidak ada baris yang dipilih atau status sudah disetujui.');
+                }
+            });
+    
+            function updatePendingLemburCount() {
+                const pendingCount = lemburData.filter(lembur => lembur.status === 'Menunggu Konfirmasi').length;
+                document.getElementById('totalPendingLembur').innerText = pendingCount;
+            }
+    
+            updatePendingLemburCount();
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const profilePic = document.querySelector('.profile-pic');
+            const logoutMenu = document.getElementById('logoutMenu');
+
+            profilePic.addEventListener('click', function () {
+                logoutMenu.classList.toggle('d-none'); // Menampilkan atau menyembunyikan menu logout
+            });
+
+            // Menyembunyikan menu saat klik di luar
+            document.addEventListener('click', function(event) {
+                if (!profilePic.contains(event.target) && !logoutMenu.contains(event.target)) {
+                    logoutMenu.classList.add('d-none'); // Sembunyikan menu logout jika klik di luar
+                }
+            });
+        });
+    </script>    
+</body>
+</html>
